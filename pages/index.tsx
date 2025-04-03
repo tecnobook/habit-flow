@@ -5,7 +5,6 @@ import ContadorDeDias from '@/components/contadorDeDias/contadorDeDias';
 import Missao from '@/components/Missao';
 import ContadorDeDiasTest from '@/components/contadorDeDiastest';
 
-
 interface Jogador {
   nome: string;
   xp: number;
@@ -21,7 +20,7 @@ interface Jogador {
   hax: number;
 }
 
-interface Array {
+interface Missao {
   tarefa: string;
   img: string;
   qtd: number;
@@ -52,10 +51,10 @@ export default function Home() {
   const [isClient, setIsClient] = useState<boolean>(false);
   const [dados, setDados] = useState<Jogador[]>([]);
   const [dia, setDia] = useState<number>(1);
-  const [items, setItems] = useState<Array[]>()
+  const [items, setItems] = useState<Missao[]>([]); // Mudança para Missao[]
   const [yn, setYn] = useState<string>('y');
-  const [menusDay, setMenusDay] = useState(92)
-  const [numTar, setNumTar] = useState(0)
+  const [menusDay, setMenusDay] = useState(92);
+  const [numTar, setNumTar] = useState(0);
   const [data, setData] = useState<Data>({ dia: dia, tarefas: 0 });
   const [count, setCount] = useState(0);
 
@@ -233,10 +232,6 @@ export default function Home() {
     setData(newData);
   };
 
-
-
-  
-
   return (
     <div className={styles.page}>
       <div>{missionDay.length}</div>
@@ -251,23 +246,21 @@ export default function Home() {
         ''
       }
       <div className={styles.missions}>
-        {items?.map((item, index) => (
-          <>
-            <Missao
-              key={index}
-              index={index}
-              item={item}
-              dia={dia}
-              menusDay={menusDay}
-              atualizarDados={atualizarDados}
-              incrementarTarefa={incrementarTarefa}
-            />
-          </>
+        {(items ?? []).map((item, index) => (
+          <Missao
+            key={index}
+            index={index}
+            item={item}
+            dia={dia}
+            menusDay={menusDay}
+            atualizarDados={atualizarDados}
+            incrementarTarefa={incrementarTarefa}
+          />
         ))}
       </div>
       <a href="/portugues"><button className={styles.button}>Portugues</button></a>
       <a href="/matematica"><button className={styles.button}>Matematica</button></a>
-      <button onClick={() => alert('Criar o array das imagens de perfil; Colocar o nivel no navbar; colocar os gifs nas missões; criar os itens da loja; ')}>O que falta fazer?</button>
+      <button onClick={() => alert('Criar o array das imagens com as missões da aulas')}>Recarregar as missões</button>
     </div>
-  )
+  );
 }
