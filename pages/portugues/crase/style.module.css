@@ -1,0 +1,41 @@
+.page {
+    width: 100vw;
+    height: 100vh;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+.question {
+    width: 80%;
+    margin: 8px;
+}
+.alternative {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 80%;
+}
+.ButtonPlace {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    box-shadow: 1px 1px 5px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    cursor: pointer;
+}
+.ButtonPlace:hover {
+    background-color: aqua;
+}
+.askArea {
+    height: 50px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
