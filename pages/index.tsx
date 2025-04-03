@@ -56,12 +56,23 @@ export default function Home() {
   const [yn, setYn] = useState<string>('y');
   const [menusDay, setMenusDay] = useState(92)
   const [numTar, setNumTar] = useState(0)
-  const [data, setData] = useState<Data>({ dia: 0, tarefas: 0 });
+  const [data, setData] = useState<Data>({ dia: dia, tarefas: 0 });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    // Definindo um intervalo para adicionar 1 ao count a cada 5 segundos
+    const interval = setInterval(() => {
+      setCount((prevCount) => prevCount + 1);
+    }, 2000);
+
+    // Limpeza do intervalo quando o componente for desmontado
+    return () => clearInterval(interval);
+  }, []);
 
   //Local de salvar as missões diarias no localStorage
   useEffect(() => {
     // Recupera os dados do localStorage ou usa os valores padrões caso não haja dados salvos
-    const storedData: Data = JSON.parse(localStorage.getItem("data") || '{"dia":0,"tarefas":0}');
+    const storedData: Data = JSON.parse(localStorage.getItem("data") || `{"dia":${dia},"tarefas":0}`);
 
     // Atualiza o estado com os dados recuperados
     setData(storedData);
@@ -115,17 +126,26 @@ export default function Home() {
   //Acionar meia noite
   const acionarMeiaNoite = () => {
     if (data.tarefas >= missionDay.length) {
-      setDia(dia - 1)
 
-      const storedData = JSON.parse(localStorage.getItem("data") || '{"dia":0,"tarefas":0}');
+      const storedData = JSON.parse(localStorage.getItem("data") || `{"dia":${dia - menusDay},"tarefas":0}`);
 
       // Atualiza o valor de "dia" no objeto de dados
-      storedData.dia = dia;
+      storedData.dia = dia - menusDay;
+      storedData.tarefas = 0;
 
       // Salva os dados atualizados no localStorage
       localStorage.setItem("data", JSON.stringify(storedData));
+      setData(storedData)
     } else {
-      localStorage.removeItem('data')
+      const storedData = JSON.parse(localStorage.getItem("data") || `{"dia":${dia - menusDay},"tarefas":0}`);
+
+      storedData.tarefas = 0;
+
+      localStorage.setItem("data", JSON.stringify(storedData));
+      if(storedData.tarefas == 0) {
+        localStorage.removeItem('data')
+        setData(storedData)
+      }
     }
   };
 
@@ -215,10 +235,14 @@ export default function Home() {
 
 
 
+  
+
   return (
     <div className={styles.page}>
       <div>{missionDay.length}</div>
       <div className={styles.space}></div>
+      <button onClick={() => acionarMeiaNoite()}>Acionar meia noite</button>
+      <div>{count}</div>
       <button onClick={() => alert('Punição; Se não fizer todas as tarefas no dia, então começa de novo. Criar um array no local storage, que irá receber a variavel dia e um numero, tal numero começará com 0 e será acres. mais 1 toda vez que clicar em finalizado em uma tarefa. O acrescimo das tarefas referente ao dia será baseado no numero dia do array. Como são 8 tarefas, então quando o numero chegar a 8, não acontecerá nada, o numero dia do array será acrescentado mais 1 normalmente, mas se não chegar a 8, o numero dia continuará o mesmo. Essa função será ativada à 00:00 todos os dias. ')}>O qua falta fazer</button>
       <h1>Dia: <ContadorDeDiasTest /></h1>
       {numTar !== missionDay.length ?
