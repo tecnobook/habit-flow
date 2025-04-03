@@ -54,7 +54,7 @@ const missionDay = [
         ok: 'n'
     },
     {
-        tarefa: 'h sem cossar', 
+        tarefa: 'h sem dopamina', 
         img: 'https://media.tenor.com/uNUAC_3wLlAAAAAM/brk.gif',
         qtd: 0.67, plus: 0.33,
         xp: 5, pontos: 5, 

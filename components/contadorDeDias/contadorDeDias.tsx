@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const ContadorDeDias = () => {
+const ContadorDeDias = (myValue: number) => {
   // Definindo o estado 'dia' que começa com 1
   const [dia, setDia] = useState<number>(1);
 
@@ -26,7 +26,7 @@ const ContadorDeDias = () => {
 
   return (
     <div>
-      <h1>Dia: {dia - 92}</h1>
+      <h1>Dia: {dia - myValue}</h1>
     </div>
   );
 };

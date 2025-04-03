@@ -45,6 +45,8 @@ interface Data {
   tarefas: number;
 }
 
+
+
 export default function Home() {
 
   "use client";
@@ -52,11 +54,39 @@ export default function Home() {
   const [dados, setDados] = useState<Jogador[]>([]);
   const [dia, setDia] = useState<number>(1);
   const [items, setItems] = useState<Missao[]>([]); // Mudança para Missao[]
-  const [yn, setYn] = useState<string>('y');
   const [menusDay, setMenusDay] = useState(92);
   const [numTar, setNumTar] = useState(0);
   const [data, setData] = useState<Data>({ dia: dia, tarefas: 0 });
   const [count, setCount] = useState(0);
+
+  const [diaAtual, setDiaAtual] = useState<number>(0);
+  const [diaPos, setDiaPos] = useState(2);
+  const defaultValue = 92;  // Valor padrão que você quer que seja usado
+  const [myValue, setMyValue] = useState<number>(defaultValue); // Inicializa com o valor padrão
+
+  useEffect(() => {
+    // Só acessar o localStorage no lado do cliente
+    if (typeof window !== 'undefined') {
+      const storedValue = localStorage.getItem('myValue'); // Lê o valor do localStorage
+      if (storedValue) {
+        setMyValue(JSON.parse(storedValue)); // Define o valor no estado se existir
+      } else {
+        localStorage.setItem('myValue', JSON.stringify(defaultValue)); // Se não existir, salva o valor padrão
+      }
+    }
+  }, []); // Isso só será executado uma vez, após o componente ser montado no cliente
+
+  // Função que pega o número do dia atual
+  const obterNumeroDoDia = (): number => {
+    const hoje = new Date();
+    return hoje.getDate(); // getDate() retorna o número do dia do mês (1 a 31)
+  };
+
+  useEffect(() => {
+    // Quando o componente for montado, obtém o número do dia
+    const numeroDoDia = obterNumeroDoDia();
+    setDiaAtual(numeroDoDia);
+  }, []);
 
   useEffect(() => {
     // Definindo um intervalo para adicionar 1 ao count a cada 5 segundos
@@ -122,9 +152,26 @@ export default function Home() {
     }
   }, []);
 
+  const saveToLocalStorage = (value: number) => {
+    // Salva no localStorage e também atualiza o estado
+    setMyValue(value);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('myValue', JSON.stringify(value)); // Salva o valor no localStorage
+    }
+  };
+
   //Acionar meia noite
   const acionarMeiaNoite = () => {
     if (data.tarefas >= missionDay.length) {
+      setDiaPos(diaAtual)
+      alert('Parabens! Você completou!')
+      initTar()
+    } else {
+      alert('Você não completou! Tente novamente hoje')
+      initTar()
+      saveToLocalStorage(myValue + 1)
+    }
+    if (diaAtual == diaPos) {
 
       const storedData = JSON.parse(localStorage.getItem("data") || `{"dia":${dia - menusDay},"tarefas":0}`);
 
@@ -141,7 +188,7 @@ export default function Home() {
       storedData.tarefas = 0;
 
       localStorage.setItem("data", JSON.stringify(storedData));
-      if(storedData.tarefas == 0) {
+      if (storedData.tarefas == 0) {
         localStorage.removeItem('data')
         setData(storedData)
       }
@@ -178,6 +225,7 @@ export default function Home() {
     // Inicia o timer para rodar a função à meia-noite
     iniciarTimer();
   }, []);
+
 
   // Função para atualizar o estado e salvar no localStorage
   const atualizarDados = (index: number, item: number, xp: number, pontos: number, forca: number, def: number, vel: number, int: number, log: number, pow: number, hax: number, con: number) => {
@@ -237,9 +285,10 @@ export default function Home() {
       <div>{missionDay.length}</div>
       <div className={styles.space}></div>
       <button onClick={() => acionarMeiaNoite()}>Acionar meia noite</button>
+      <div>{menusDay}</div>
       <div>{count}</div>
       <button onClick={() => alert('Punição; Se não fizer todas as tarefas no dia, então começa de novo. Criar um array no local storage, que irá receber a variavel dia e um numero, tal numero começará com 0 e será acres. mais 1 toda vez que clicar em finalizado em uma tarefa. O acrescimo das tarefas referente ao dia será baseado no numero dia do array. Como são 8 tarefas, então quando o numero chegar a 8, não acontecerá nada, o numero dia do array será acrescentado mais 1 normalmente, mas se não chegar a 8, o numero dia continuará o mesmo. Essa função será ativada à 00:00 todos os dias. ')}>O qua falta fazer</button>
-      <h1>Dia: <ContadorDeDiasTest /></h1>
+      <h1>Dia: <ContadorDeDiasTest myValue={myValue} /></h1>
       {numTar !== missionDay.length ?
         <div className={styles.init} onClick={() => { initTar(), localStorage.removeItem('data') }}>Iniciar Tarefas</div>
         :
@@ -252,7 +301,7 @@ export default function Home() {
             index={index}
             item={item}
             dia={dia}
-            menusDay={menusDay}
+            menusDay={myValue}
             atualizarDados={atualizarDados}
             incrementarTarefa={incrementarTarefa}
           />
