@@ -18,10 +18,18 @@ const topOscarWinners: Movie[] = [
   { title: 'Gravity (2013)', oscars: 7 },
 ];
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Movie[]>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Movie[]>) {
+  // Habilita CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Trata requisição OPTIONS (pré-vôo)
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   if (req.method === 'GET') {
     res.status(200).json(topOscarWinners);
   } else {
