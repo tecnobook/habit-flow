@@ -55,13 +55,13 @@ export default function Home() {
   const [dados, setDados] = useState<Jogador[]>([]);
   const [dia, setDia] = useState<number>(1);
   const [items, setItems] = useState<Missao[]>([]); // Mudança para Missao[]
-  const [menusDay, setMenusDay] = useState(92);
+  const [menusDay, setMenusDay] = useState(93);
   const [numTar, setNumTar] = useState(0);
   const [data, setData] = useState<Data>({ dia: dia, tarefas: 0 });
 
   const [diaAtual, setDiaAtual] = useState<number>(0);
   const [diaPos, setDiaPos] = useState(2);
-  const defaultValue = 92;  // Valor padrão que você quer que seja usado
+  const defaultValue = 93;  // Valor padrão que você quer que seja usado
   const [myValue, setMyValue] = useState<number>(defaultValue); // Inicializa com o valor padrão
 
 
@@ -277,7 +277,7 @@ export default function Home() {
     <div className={styles.page}>
       <div>{missionDay.length}</div>
       <div className={styles.space}></div>
-      <h1>Andar: <ContadorDeDiasTest myValue={myValue} /></h1>
+      <h1 className={styles.h1}>Andar: <ContadorDeDiasTest myValue={myValue} /></h1>
       <div className={styles.missions}>
         {(items ?? []).map((item, index) => (
           <Missao

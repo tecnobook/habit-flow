@@ -11,6 +11,7 @@
     background: linear-gradient(145deg, #34495e, #2c3e50); /* Gradiente para dar um efeito mais interessante */
     box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4); /* Sombra interna para dar profundidade */
     transition: background 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+    flex-direction: column;
 }
 
 /* Efeitos ao passar o mouse sobre a página */
@@ -63,4 +64,16 @@
     border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+}
+.up {
+    height: 150px;
+    width: 100vw;
+    background-image: url('https://images3.alphacoders.com/134/1345615.jpeg');
+    background-size: 100%;
+    background-position: center;
+}
+.perfilArea {
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
 }

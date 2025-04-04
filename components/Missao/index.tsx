@@ -17,8 +17,8 @@ const Missao: React.FC<MissaoProps> = ({ index, item, dia, menusDay, atualizarDa
       <div className={styles.mission}>
         <h3>{(item.qtd + (item.plus * (dia - menusDay))).toFixed(1)} {item.tarefa}</h3>
         <img className={styles.img} src={item.img} alt="" />
-        <div>Xp: +{item.xp + 5 * (dia - menusDay)}</div>
-        <div>Pontos: +{item.pontos + 8 * (dia - menusDay)}</div>
+        <div>Xp: +{item.xp + 4 * (dia - menusDay)}</div>
+        <div>Pontos: +{item.pontos + 7 * (dia - menusDay)}</div>
 
         {item.for > 0 && <div className={styles.inclement}>For: +{((item.for + 2 * (dia - menusDay)) * item.for).toFixed(1)}</div>}
         {item.def > 0 && <div className={styles.inclement}>Def: +{((item.def + 2 * (dia - menusDay)) * item.def).toFixed(1)}</div>}
