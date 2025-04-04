@@ -15,19 +15,19 @@ const Missao: React.FC<MissaoProps> = ({ index, item, dia, menusDay, atualizarDa
   return (
     item.ok === 'n' && (
       <div className={styles.mission}>
-        <h3>{item.qtd + (item.plus * (dia - menusDay))} {item.tarefa}</h3>
+        <h3>{(item.qtd + (item.plus * (dia - menusDay))).toFixed(1)} {item.tarefa}</h3>
         <img className={styles.img} src={item.img} alt="" />
         <div>Xp: +{item.xp + 5 * (dia - menusDay)}</div>
         <div>Pontos: +{item.pontos + 8 * (dia - menusDay)}</div>
 
-        {item.for > 0 && <div>For: +{((item.for + 2 * (dia - menusDay)) * item.for).toFixed(1)}</div>}
-        {item.def > 0 && <div>Def: +{((item.def + 2 * (dia - menusDay)) * item.def).toFixed(1)}</div>}
-        {item.vel > 0 && <div>Vel: +{(item.vel + 6 + 1 * (dia - menusDay)) * item.vel}</div>}
-        {item.con > 0 && <div>Con: +{(item.con + 1 * (dia - menusDay)) * item.vel}</div>}
-        {item.int > 0 && <div>Int: +{(item.int + 0.00001 * (dia - menusDay)).toFixed(5)}</div>}
-        {item.log > 0 && <div>Log: +{item.log + 1 * (dia - menusDay)}</div>}
-        {item.pow > 0 && <div>Pow: +{item.pow + 2 * (dia - menusDay)}</div>}
-        {item.hax > 0 && <div>Hax: +{(item.hax + 0.00001 * (dia - menusDay)).toFixed(5)}</div>}
+        {item.for > 0 && <div className={styles.inclement}>For: +{((item.for + 2 * (dia - menusDay)) * item.for).toFixed(1)}</div>}
+        {item.def > 0 && <div className={styles.inclement}>Def: +{((item.def + 2 * (dia - menusDay)) * item.def).toFixed(1)}</div>}
+        {item.vel > 0 && <div className={styles.inclement}>Vel: +{(item.vel + 6 + 1 * (dia - menusDay)) * item.vel}</div>}
+        {item.con > 0 && <div className={styles.inclement}>Con: +{(item.con + 1 * (dia - menusDay)) * item.vel}</div>}
+        {item.int > 0 && <div className={styles.inclement}>Int: +{(item.int * (dia - menusDay)).toFixed(0)}</div>}
+        {item.log > 0 && <div className={styles.inclement}>Log: +{item.log + 1 * (dia - menusDay)}</div>}
+        {item.pow > 0 && <div className={styles.inclement}>Pow: +{item.pow + 2 * (dia - menusDay)}</div>}
+        {item.hax > 0 && <div className={styles.inclement}>Hax: +{(item.hax + 0.00001 * (dia - menusDay)).toFixed(5)}</div>}
 
         <button
           className={styles.button2}

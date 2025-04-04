@@ -3,13 +3,13 @@
     height: 100vh;
     background-color: aliceblue;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     flex-direction: column;
 }
 .question {
     width: 80%;
     margin: 8px;
+    margin-top: 150px;
 }
 .alternative {
     display: flex;

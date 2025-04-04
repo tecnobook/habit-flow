@@ -9,6 +9,7 @@ interface Jogador {
     for: number;
     def: number;
     vel: number;
+    con: number;
     int: number;
     log: number;
     pow: number;
@@ -37,24 +38,27 @@ export default function Crase() {
             } else {
                 // Valor padrão caso não haja dados no localStorage
                 setDados([
-                    { nome: "Daniel", xp: 0, pontos: 0, for: 0, def: 0, vel: 0, int: 1, log: 0, pow: 0, hax: 1 },
+                    { nome: "Daniel", xp: 0, pontos: 0, for: 0, def: 0, con: 0, vel: 0, int: 1, log: 0, pow: 0, hax: 1 },
                 ]);
             }
         }
     }, []);
 
     // Função para atualizar o estado e salvar no localStorage
-    const atualizarDados = (index: number) => {
-        if (isClient) {
-            const novosDados = [...dados];
-            novosDados[index].xp += 15;
-            novosDados[index].pontos += 20;
 
-            // Atualizando no estado e no localStorage
-            setDados(novosDados);
-            localStorage.setItem("dados", JSON.stringify(novosDados));
+    const atualizarDados = (index: number, pontos: number, xp: number, int: number) => {
+        if (isClient) {
+          const novosDados = [...dados];
+          novosDados[index].xp += xp;
+          novosDados[index].pontos += pontos;
+          novosDados[index].int += int;
+    
+          // Atualizando no estado e no localStorage
+          setDados(novosDados);
+          localStorage.setItem("dados", JSON.stringify(novosDados));
+          window.location.reload();
         }
-    };
+      };
 
     // Exibir uma tela de carregamento enquanto os dados não são carregados no cliente
     if (!isClient) {
@@ -74,10 +78,10 @@ export default function Crase() {
     };
 
     //------------------------------------------------------------------------------------------
-    const resposta = (letter: string) => {
+    const resposta = (letter: string, pontos: number, xp: number, int: number) => {
         if (letter == crase[0].correct) {
             setCorrect('acertou')
-            atualizarDados(0)
+            atualizarDados(0, pontos, xp, int)
         } else {
             setCorrect('errou')
             atualizarDadosErrou(0)
@@ -86,6 +90,7 @@ export default function Crase() {
 
     return (
         <div className={styles.page}>
+            <div className={styles.space}></div>
             <div>correct {correct}</div>
             <div className={styles.question}>{crase[quest].question}</div>
             <div className={styles.alternative}>
@@ -176,7 +181,7 @@ export default function Crase() {
                 <div>{crase[quest].e}</div>
             </div>
             <div className={styles.askArea}>
-                <button style={{ display: display }} onClick={() => resposta(correct)}>
+                <button style={{ display: display }} onClick={() => resposta(correct, crase[quest].pontos, crase[quest].xp, crase[quest].int)}>
                     Responder
                 </button>
             </div>

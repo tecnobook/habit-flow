@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css'
 import missionDay from '@/utils/missionDay';
-import ContadorDeDias from '@/components/contadorDeDias/contadorDeDias';
+
 import Missao from '@/components/Missao';
 import ContadorDeDiasTest from '@/components/contadorDeDiastest';
 
@@ -57,12 +57,13 @@ export default function Home() {
   const [menusDay, setMenusDay] = useState(92);
   const [numTar, setNumTar] = useState(0);
   const [data, setData] = useState<Data>({ dia: dia, tarefas: 0 });
-  const [count, setCount] = useState(0);
 
   const [diaAtual, setDiaAtual] = useState<number>(0);
   const [diaPos, setDiaPos] = useState(2);
   const defaultValue = 92;  // Valor padrão que você quer que seja usado
   const [myValue, setMyValue] = useState<number>(defaultValue); // Inicializa com o valor padrão
+
+
 
   useEffect(() => {
     // Só acessar o localStorage no lado do cliente
@@ -86,16 +87,6 @@ export default function Home() {
     // Quando o componente for montado, obtém o número do dia
     const numeroDoDia = obterNumeroDoDia();
     setDiaAtual(numeroDoDia);
-  }, []);
-
-  useEffect(() => {
-    // Definindo um intervalo para adicionar 1 ao count a cada 5 segundos
-    const interval = setInterval(() => {
-      setCount((prevCount) => prevCount + 1);
-    }, 2000);
-
-    // Limpeza do intervalo quando o componente for desmontado
-    return () => clearInterval(interval);
   }, []);
 
   //Local de salvar as missões diarias no localStorage
@@ -166,6 +157,7 @@ export default function Home() {
       setDiaPos(diaAtual)
       alert('Parabens! Você completou!')
       initTar()
+      saveToLocalStorage(myValue - 1)
     } else {
       alert('Você não completou! Tente novamente hoje')
       initTar()
@@ -284,11 +276,7 @@ export default function Home() {
     <div className={styles.page}>
       <div>{missionDay.length}</div>
       <div className={styles.space}></div>
-      <button onClick={() => acionarMeiaNoite()}>Acionar meia noite</button>
-      <div>{menusDay}</div>
-      <div>{count}</div>
-      <button onClick={() => alert('Punição; Se não fizer todas as tarefas no dia, então começa de novo. Criar um array no local storage, que irá receber a variavel dia e um numero, tal numero começará com 0 e será acres. mais 1 toda vez que clicar em finalizado em uma tarefa. O acrescimo das tarefas referente ao dia será baseado no numero dia do array. Como são 8 tarefas, então quando o numero chegar a 8, não acontecerá nada, o numero dia do array será acrescentado mais 1 normalmente, mas se não chegar a 8, o numero dia continuará o mesmo. Essa função será ativada à 00:00 todos os dias. ')}>O qua falta fazer</button>
-      <h1>Dia: <ContadorDeDiasTest myValue={myValue} /></h1>
+      <h1>Andar: <ContadorDeDiasTest myValue={myValue} /></h1>
       {numTar !== missionDay.length ?
         <div className={styles.init} onClick={() => { initTar(), localStorage.removeItem('data') }}>Iniciar Tarefas</div>
         :
@@ -306,6 +294,11 @@ export default function Home() {
             incrementarTarefa={incrementarTarefa}
           />
         ))}
+        {data.tarefas >= missionDay.length ?
+          <button onClick={() => acionarMeiaNoite()}>Finalizou</button>
+          :
+          ''
+        }
       </div>
       <a href="/portugues"><button className={styles.button}>Portugues</button></a>
       <a href="/matematica"><button className={styles.button}>Matematica</button></a>

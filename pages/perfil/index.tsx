@@ -105,7 +105,7 @@ const perfil = () => {
                 <h3>Def: {(dados[0].def).toFixed(0)}</h3>
                 <h3>Vel: {(dados[0].vel).toFixed(0)}</h3>
                 <h3>Int: {(dados[0].int).toFixed(0)}</h3>
-                <h3>Con: {(dados[0].con).toFixed(0)}</h3>
+                <h3>Con: {(dados[0].con)}</h3>
                 <h3>Logica: {(dados[0].log).toFixed(0)}</h3>
                 <h3>Poder: {dados[0].pow}</h3>
                 <h3>Hax: {(dados[0].hax).toFixed(0)}</h3>

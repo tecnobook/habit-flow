@@ -9,9 +9,9 @@ const missionDay = [
         ok: 'n'
     },
     {
-        tarefa: 'volta pistão', 
+        tarefa: 'm Corrida', 
         img: 'https://giffiles.alphacoders.com/170/170190.gif',
-        qtd: 0, plus: 0.125,
+        qtd: 0, plus: 250,
         xp: 25, pontos: 20, 
         for: 0.8, def: 0.5, vel: 1, int: 0.3, con: 0, log: 0, pow: 0, hax: 0.00001,
         gloria: 'Glorificar a Deus com a nossa saúde. "Nosso corpo é templo do Espirito Santo".',
@@ -38,7 +38,7 @@ const missionDay = [
     {
         tarefa: 'min oração',
         img: 'https://cdn.pixabay.com/animation/2024/01/20/20/53/20-53-36-668_512.gif',
-        qtd: 2, plus: 1, 
+        qtd: 1, plus: 2, 
         xp: 20, pontos: 10, 
         for: 0, def: 0, vel: 0, int: 0, con: 0, log: 0, pow: 4, hax: 0.00001,
         gloria: 'Deus quer relacionamento com seus filhos. "Orai sem cessar", "Vigiai e orai".',
@@ -47,7 +47,7 @@ const missionDay = [
     {
         tarefa: 'min de estudo', 
         img: 'https://media.tenor.com/_h_1fcwEkHYAAAAM/studying-windy.gif',
-        qtd: 8, plus: 2,
+        qtd: 6, plus: 4,
         xp: 25, pontos: 25, 
         for: 0, def: 0, vel: 0, int: 1, con: 0, log: 0, pow: 0, hax: 0.00001,
         gloria: 'Deus quer filhos inteligentes.',
@@ -56,7 +56,7 @@ const missionDay = [
     {
         tarefa: 'h sem dopamina', 
         img: 'https://media.tenor.com/uNUAC_3wLlAAAAAM/brk.gif',
-        qtd: 0.67, plus: 0.33,
+        qtd: 0.87, plus: 0.13,
         xp: 5, pontos: 5, 
         for: 0, def: 0, vel: 0, int: 0.2, con: 4, log: 0, pow: 0.5, hax: 0.00001,
         gloria: 'Deus quer filhos inteligentes.',

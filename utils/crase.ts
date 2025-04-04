@@ -7,6 +7,9 @@ const crase = [
         d: 'A crase ocorre pela fusão da preposição exigida pelo verbo "responde" com o artigo definido feminino plural "as", que acompanha o substantivo "perguntas".', 
         e: 'Nenhuma das alternativas acima.', 
         correct: 'D', 
+        xp: 4,
+        pontos: 3,
+        int: 0.5,
         diff: 'F'
     },
 ]
