@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css'
 import missionDay from '@/utils/missionDay';
-
+import StudyArea from '@/components/studyArea';
 import Missao from '@/components/Missao';
 import ContadorDeDiasTest from '@/components/contadorDeDiastest';
+import Botao from '@/components/button';
 
 interface Jogador {
   nome: string;
@@ -277,11 +278,6 @@ export default function Home() {
       <div>{missionDay.length}</div>
       <div className={styles.space}></div>
       <h1>Andar: <ContadorDeDiasTest myValue={myValue} /></h1>
-      {numTar !== missionDay.length ?
-        <div className={styles.init} onClick={() => { initTar(), localStorage.removeItem('data') }}>Iniciar Tarefas</div>
-        :
-        ''
-      }
       <div className={styles.missions}>
         {(items ?? []).map((item, index) => (
           <Missao
@@ -295,14 +291,14 @@ export default function Home() {
           />
         ))}
         {data.tarefas >= missionDay.length ?
-          <button onClick={() => acionarMeiaNoite()}>Finalizou</button>
+          <div onClick={() => acionarMeiaNoite()}>
+            <Botao name={'Finalizado'} />
+          </div>
           :
           ''
         }
       </div>
-      <a href="/portugues"><button className={styles.button}>Portugues</button></a>
-      <a href="/matematica"><button className={styles.button}>Matematica</button></a>
-      <button onClick={() => alert('Criar o array das imagens com as missões da aulas')}>Recarregar as missões</button>
+      <StudyArea />
     </div>
   );
 }

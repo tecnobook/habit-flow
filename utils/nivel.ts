@@ -13,7 +13,17 @@ const Nivel = [
     {nivel: 12, xp: 1880},
     {nivel: 13, xp: 2140},
     {nivel: 14, xp: 2420},
-    {nivel: 15, xp: 2720}
+    {nivel: 15, xp: 2750},
+    {nivel: 16, xp: 3100},
+    {nivel: 17, xp: 3500},
+    {nivel: 18, xp: 4050},
+    {nivel: 19, xp: 4650},
+    {nivel: 20, xp: 5400},
+    {nivel: 21, xp: 6200},
+    {nivel: 22, xp: 7100},
+    {nivel: 23, xp: 8050},
+    {nivel: 24, xp: 9100},
+    {nivel: 25, xp: 10150},
 ]
 
 export default Nivel;

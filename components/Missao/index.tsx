@@ -54,7 +54,6 @@ const Missao: React.FC<MissaoProps> = ({ index, item, dia, menusDay, atualizarDa
         <button className={styles.button2} onClick={() => alert(item.gloria)}>
           Gloria a Deus
         </button>
-        <div>Time</div>
       </div>
     )
   );

@@ -1,4 +1,5 @@
 
+import Footer from "@/components/footer";
 import Perfil from "@/components/perfil";
 import "@/styles/globals.css";
 import styles from '@/styles/Home.module.css'
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Perfil />
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }

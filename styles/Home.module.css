@@ -8,7 +8,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   color: whitesmoke;
-  background-image: url('/img/test.png');
+  background-image: url('/img/solo.jpg');
+  background-size: 100%;
 }
 
 .button {
@@ -24,6 +25,7 @@
   width: 90vw;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   border-radius: 10px;
   box-shadow: 1px 1px 5px black;

@@ -11,7 +11,7 @@ const missionDay = [
     {
         tarefa: 'm Corrida', 
         img: 'https://giffiles.alphacoders.com/170/170190.gif',
-        qtd: 0, plus: 250,
+        qtd: 0, plus: 150,
         xp: 25, pontos: 20, 
         for: 0.8, def: 0.5, vel: 1, int: 0.3, con: 0, log: 0, pow: 0, hax: 0.00001,
         gloria: 'Glorificar a Deus com a nossa saúde. "Nosso corpo é templo do Espirito Santo".',
@@ -29,7 +29,7 @@ const missionDay = [
     {
         tarefa: 'cap. biblia', 
         img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQxzxpblgxf3dbBZREzh8Lgax4QXKF2_CycKBFs5In7YFURmREsWL8F7LumI-hsnKzybsV_UJQSrfSS8ZW-Ax3Z6PR1pAfytL3hQClj_2SXEzx-K3b0QlsYgeZSLac3IPy12Vr1V1fCiY/s1600/back-to-reading.gif',
-        qtd: 0, plus: 0.25,
+        qtd: 0, plus: 0.5,
         xp: 20, pontos: 10, 
         for: 0, def: 0, vel: 0, int: 1.5, con: 0, log: 0, pow: 1, hax: 0.00001,
         gloria: 'Deus quer que tenhamos conhecimento de quem Ele é. "Meu povo perece por falta de conhecimento", "E conhecereis a verdade e ela vos libertará", "Santifica-os na verdade, a tua palavra é a verdade".',
@@ -49,7 +49,7 @@ const missionDay = [
         img: 'https://media.tenor.com/_h_1fcwEkHYAAAAM/studying-windy.gif',
         qtd: 6, plus: 4,
         xp: 25, pontos: 25, 
-        for: 0, def: 0, vel: 0, int: 1, con: 0, log: 0, pow: 0, hax: 0.00001,
+        for: 0, def: 0, vel: 0, int: 4, con: 0, log: 0, pow: 0, hax: 0.00001,
         gloria: 'Deus quer filhos inteligentes.',
         ok: 'n'
     },
@@ -65,9 +65,9 @@ const missionDay = [
     {
         tarefa: "l d'agua", 
         img: 'https://i.pinimg.com/originals/6e/a4/58/6ea4583b98eeb2cb969c168f888fe297.gif',
-        qtd: 1, plus: .2,
+        qtd: 1, plus: .1,
         xp: 5, pontos: 5, 
-        for: 0, def: 0.4, vel: 0, int: 0, con: 0, log: 0.1, pow: 0, hax: 0,
+        for: 0, def: 1, vel: 0, int: 0, con: 0, log: 0.5, pow: 0, hax: 0,
         gloria: 'Deus quer filhos inteligentes.',
         ok: 'n'
     },
